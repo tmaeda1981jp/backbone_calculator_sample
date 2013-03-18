@@ -1,0 +1,12 @@
+{
+  "name": "backbone calculator sample",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "mocha-phantomjs": "~2.0.0",
+    "mocha": "~1.8.1",
+    "sinon": "~1.6.0",
+    "chai": "~1.5.0",
+    "sinon-chai": "~2.3.1"
+  }
+}
