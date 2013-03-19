@@ -2,11 +2,12 @@
 /*global require:false */
 
 require.config({
-  baseUrl: './',
+  baseUrl: './js/',
   paths: {
     jquery: 'lib/jquery',
     underscore: 'lib/underscore',
-    backbone: 'lib/backbone'
+    backbone: 'lib/backbone',
+    mustache: 'lib/mustache'
   },
   shim: {
     underscore: {
@@ -19,10 +20,10 @@ require.config({
   }
 });
 
-require(['jquery', 'underscore', 'backbone', 'model', 'view'], function($, _, Backbone, Counter, View) {
+require(['jquery', 'underscore', 'backbone'], function($, _, Backbone) {
   'use strict';
   $(function() {
-    var view = new View({model: new Counter()}).render();
-    $('body').html(view.$el);
+    // var view = new View({model: new Counter()}).render();
+    // $('body').html(view.$el);
   });
 });
