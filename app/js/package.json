@@ -1,5 +1,6 @@
 {
-  "name": "grunt-for-backbone-calculator-sample",
+  "name": "puzzle_game_sample",
+  "description": "puzzle gameのサンプルです．",
   "version": "0.0.1",
   "private": true,
   "author": "tmaeda1981jp",

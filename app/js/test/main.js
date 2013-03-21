@@ -1,15 +1,16 @@
 /*jslint white: true, nomen: true, maxlen: 120, browser:true, */
 /*global require:false */
 require.config({
-  baseUrl: '../app/',
+  baseUrl: '../',
   paths: {
     jquery: 'lib/jquery',
     underscore: 'lib/underscore',
     backbone: 'lib/backbone',
-    mocha: '../test/node_modules/mocha/mocha',
-    sinon: '../test/node_modules/sinon/pkg/sinon',
-    chai: '../test/node_modules/chai/chai',
-    schai: '../test/node_modules/sinon-chai/lib/sinon-chai'
+    'backbone.viewmodel': 'lib/view-model',
+    mocha: 'test/node_modules/mocha/mocha',
+    sinon: 'test/node_modules/sinon/pkg/sinon',
+    chai: 'test/node_modules/chai/chai',
+    schai: 'test/node_modules/sinon-chai/lib/sinon-chai'
   },
   shim: {
     underscore: {
@@ -18,6 +19,9 @@ require.config({
     backbone: {
       deps: ['jquery', 'underscore'],
       exports: 'Backbone'
+    },
+    'backbone.viewmodel': {
+      deps: ['backbone']
     },
     mocha: {
       exports: 'mocha'
@@ -39,10 +43,10 @@ require([
   window.expect = chai.expect;
 
   require([
-    '../test/spec/collections/party',
-    '../test/spec/collections/unitbox'
+    'test/specs/models/calculation.model.spec',
+    'test/specs/viewmodels/calculator.viewmodel.spec'
   ], function(
-    party, unitbox
+    Calculation, Calculator
   ) {
     if (window.mochaPhantomJS) {
       window.mochaPhantomJS.run();
