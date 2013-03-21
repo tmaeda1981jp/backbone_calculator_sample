@@ -6,14 +6,6 @@ define([
 ], function($, _, Backbone) {
   'use strict';
 
-  var _LOG =  function(model) {
-    console.log("--------------");
-    console.log('CURRENT   : ' + model.get('userInputText'));
-    console.log('OPERATION : ' + model.get('operationState'));
-    console.log('TEMPORARY : ' + model.get('temporaryValue'));
-    console.log('initField : ' + model.get('initializeTextField'));
-  };
-
   return Backbone.View.extend({
     tagName: 'p',
     id: 'buttonsArea',
@@ -39,18 +31,15 @@ define([
     onClickDigit: function(event) {
       var inputed = $(event.target).val().toString();
       this.model.setInputValue(inputed);
-      _LOG(this.model);
     },
 
     onClickOperation: function(event) {
       this.model.calculate();
       this.model.changeOperationState($(event.target).val());
-      _LOG(this.model);
     },
 
     onClickClear: function(event) {
       this.model.reset();
-      _LOG(this.model);
     }
   });
 });
