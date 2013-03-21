@@ -247,19 +247,31 @@ define([
             viewmodel.get('temporaryValue').should.equal(5);
           });
         });
+
         context('演算処理でエラーが発生した(エラーがthrowされた)場合', function() {
-          var viewmodel;
+          var viewmodel, sourceModel, stub;
           beforeEach(function() {
+            sourceModel = new Calculation();
+            stub = sinon.stub(sourceModel, 'add').throws();
             viewmodel = new Calculator({
-              source_model: new Calculation()
+              source_model: sourceModel
             });
             viewmodel.set({
+              initializeTextField: false,
               userInputText: '123',
               temporaryValue: 15,
               operationState: 'ADD'
             });
           });
-          it('errorOccurredイベントがkickされること');
+          afterEach(function() {
+            stub.restore();
+          });
+          it('errorOccurredイベントがkickされること', function() {
+            var spy = sinon.spy();
+            viewmodel.on('errorOccurred', spy);
+            viewmodel.calculate();
+            spy.callCount.should.equal(1);
+          });
           it('userInputTextに"0"が設定されること', function() {
             viewmodel.get('userInputText').should.equal('123');
             viewmodel.reset();
