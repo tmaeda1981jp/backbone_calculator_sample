@@ -13,7 +13,7 @@ define([
 
     initialize: function() {
       var self = this;
-      this.listenTo(this.model, 'change:userInputText', this.updateCurrent);
+      this.listenTo(this.model, 'change:userInputText', this.updateTextField);
       this.model.on('errorOccurred', function(message) {
         window.alert(message);
       });
@@ -24,12 +24,12 @@ define([
       // Chromeだとエラー
       $.Mustache.load('templates/calc.tmpl.html').done(function() {
         self.$el.mustache('textField');
-        self.updateCurrent(self.model);
+        self.updateTextField(self.model);
       });
       return this;
     },
 
-    updateCurrent: function(model) {
+    updateTextField: function(model) {
       this.$el.find('input').val(model.get('userInputText'));
     }
   });
