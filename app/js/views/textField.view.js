@@ -21,6 +21,7 @@ define([
 
     render: function() {
       var self = this;
+      // Chromeだとエラー
       $.Mustache.load('templates/calc.tmpl.html').done(function() {
         self.$el.mustache('textField');
         self.updateCurrent(self.model);

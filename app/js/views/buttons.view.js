@@ -22,6 +22,7 @@ define([
 
     render: function() {
       var self = this;
+      // TODO Chromeだとエラー
       $.Mustache.load('templates/calc.tmpl.html').done(function() {
         self.$el.mustache('buttons');
       });
