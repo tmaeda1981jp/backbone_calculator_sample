@@ -9,7 +9,7 @@ require.config({
     backbone: 'lib/backbone',
     'backbone.viewmodel': 'lib/view-model',
     mustache: 'lib/mustache',
-    'jquery.mustache': 'lib/jquery.mustache'
+    text: 'lib/text'
   },
   shim: {
     underscore: {
@@ -21,9 +21,6 @@ require.config({
     },
     'backbone.viewmodel': {
       deps: ['backbone']
-    },
-    'jquery.mustache': {
-      deps: ['jquery']
     }
   }
 });
@@ -33,10 +30,17 @@ require([
   'views/buttons.view',
   'viewmodels/calculator.viewmodel',
   'models/calculation.model',
-  'mustache', 'jquery.mustache', 'backbone.viewmodel'
-], function($, _, Backbone, TextField, 
-            Buttons, Calculator, Calculation) {
+  'mustache',
+  'backbone.viewmodel'
+], function(
+  $, _, Backbone,
+  TextField,
+  Buttons,
+  Calculator,
+  Calculation
+) {
   'use strict';
+
   $(function() {
     var model = new Calculation(),
         viewmodel = new Calculator({
