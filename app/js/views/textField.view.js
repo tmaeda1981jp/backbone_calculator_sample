@@ -2,8 +2,9 @@
 /*global _:false, $:false, define:false, require:false, */
 
 define([
-  'jquery', 'underscore', 'backbone'
-], function($, _, Backbone) {
+  'jquery', 'underscore', 'backbone',
+  'mustache', 'text!../../templates/textField.tmpl.html'
+], function($, _, Backbone, Mustache, template) {
   'use strict';
 
   return Backbone.View.extend({
@@ -12,7 +13,6 @@ define([
     className: 'row',
 
     initialize: function() {
-      var self = this;
       this.listenTo(this.model, 'change:userInputText', this.updateTextField);
       this.model.on('errorOccurred', function(message) {
         window.alert(message);
@@ -20,12 +20,8 @@ define([
     },
 
     render: function() {
-      var self = this;
-      // Chromeだとエラー
-      $.Mustache.load('templates/calc.tmpl.html').done(function() {
-        self.$el.mustache('textField');
-        self.updateTextField(self.model);
-      });
+      this.$el.html(Mustache.to_html(template));
+      this.updateTextField(this.model);
       return this;
     },
 

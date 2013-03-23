@@ -2,8 +2,8 @@
 /*global _:false, $:false, define:false, require:false, */
 
 define([
-  'jquery', 'underscore', 'backbone'
-], function($, _, Backbone) {
+  'jquery', 'underscore', 'backbone', 'mustache', 'text!../../templates/buttons.tmpl.html'
+], function($, _, Backbone, Mustache, template) {
   'use strict';
 
   return Backbone.View.extend({
@@ -21,11 +21,7 @@ define([
     },
 
     render: function() {
-      var self = this;
-      // TODO Chromeだとエラー
-      $.Mustache.load('templates/calc.tmpl.html').done(function() {
-        self.$el.mustache('buttons');
-      });
+      this.$el.html(Mustache.to_html(template));
       return this;
     },
 
